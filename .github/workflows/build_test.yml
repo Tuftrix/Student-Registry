@@ -19,6 +19,8 @@ jobs:
         cache: 'npm'
     - name: install program dependencies
       run: npm install
+    - name: Fix modules
+      run: npm audit fix --force
     - name: Start the app
       run: npm run start
     - name: Run integration tests
