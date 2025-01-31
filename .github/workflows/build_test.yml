@@ -2,24 +2,26 @@ name: Build and Test
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
   build_test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js v20.10.0
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-        cache: 'npm'
-    - name: install program dependencies
-      run: npm install
-    - name: Fix modules
-      run: npm audit fix --force
-    - name: Run integration tests
-      run: npm run test
+      - uses: actions/checkout@v4
+      - name: Use Node.js v20.10.0
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+      - name: install program dependencies
+        run: npm install
+      - name: Fix modules
+        run: npm audit fix --force
+      - name: Run the project
+        run: npm run start &
+      - name: Run integration tests
+        run: npm run test
